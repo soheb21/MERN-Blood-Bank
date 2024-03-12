@@ -42,8 +42,8 @@ const loginCtrl = async (req, res) => {
         if (!isMatch) {
             return res.status(403).json({ success: false, mssg: "password is wrong" })
         }
-        const token= jwt.sign({userID:doc._id},process.env.JWT_SECRET_KEY,{expiresIn:"1d"})
-        res.status(201).json({ success: true, mssg: "user login successfully",token, doc })
+        const token = jwt.sign({ userID: doc._id }, process.env.JWT_SECRET_KEY, { expiresIn: "1d" })
+        res.status(201).json({ success: true, mssg: "user login successfully", token, doc })
 
     } catch (e) {
         console.log(`login error ${e}`.bgRed.white)
@@ -55,11 +55,11 @@ const loginCtrl = async (req, res) => {
     }
 }
 
-const currentUserCtrl=async(req,res)=>{
+const currentUserCtrl = async (req, res) => {
     try {
-        const user = await userModel.findOne({_id:req.body.userID});
+        const user = await userModel.findOne({ _id: req.body.userID });
 
-        res.status(201).json({ success: true, mssg: "user fetch successfully",user })
+        res.status(201).json({ success: true, mssg: "user fetch successfully", user })
 
     } catch (e) {
         console.log(`testUserCtrl error ${e}`.bgRed.white)
@@ -72,4 +72,4 @@ const currentUserCtrl=async(req,res)=>{
 
 }
 
-module.exports = { registerCtrl, loginCtrl,currentUserCtrl }
+module.exports = { registerCtrl, loginCtrl, currentUserCtrl }

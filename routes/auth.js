@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/authCheck");
 const router = express.Router();
 
 router.post("/register", registerCtrl)
-    .post("/", loginCtrl)
-    .get("/", authMiddleware, currentUserCtrl)
+    .post("/login", loginCtrl)
+    .get("/getUser", authMiddleware, currentUserCtrl)
 
 module.exports = router;
