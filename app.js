@@ -1,9 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const { connectDB } = require("./db/database");
-
 const app = express();
 const cors = require("cors")
+const path = require("path")
 
 
 
@@ -20,5 +20,11 @@ app.use("/api/v1/admin", require("./routes/adminRoutes"));
 //Database
 connectDB();
 
+//Static build file
+app.use(express.static(path.join(__dirname, "./client/dist")))
+//static route
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./client/dist/index.html"))
+})
 const port = process.env.PORT;
 app.listen(port, () => console.log(`server is running at port no ${port}`.bgYellow))
