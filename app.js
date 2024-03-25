@@ -23,8 +23,6 @@ connectDB();
 //Static build file
 app.use(express.static(path.join(__dirname, "./client/dist")))
 //static route
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/dist/index.html"))
-})
+app.get("*", (req, res) => res.sendFile(path.resolve('dist', 'index.html')))
 const port = process.env.PORT;
 app.listen(port, () => console.log(`server is running at port no ${port}`.bgYellow))
