@@ -11,4 +11,8 @@
     ],
   
     "rewrites": [{ "source": "/(.*)", "destination": "index.js" }]
+<<<<<<< HEAD
   }
+=======
+  }
+>>>>>>> f7599f6cc153558ccdfc3ff314f6a3a729c45b2a
