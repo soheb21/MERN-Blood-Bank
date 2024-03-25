@@ -19,7 +19,7 @@ const inventorySchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, "Donar Email is Required"],
-      },
+    },
     organisaion: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
@@ -28,16 +28,13 @@ const inventorySchema = new mongoose.Schema({
     hospital: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
-        required: function () {
-            return this.inventoryType === "out";
-        },
+        // required: function () {
+        //     return this.inventoryType === "out";
+        // },
     },
-    doner:{
+    doner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
-        required: function () {
-            return this.inventoryType === "in";
-        },  
     }
 
 }, { timestamps: true });

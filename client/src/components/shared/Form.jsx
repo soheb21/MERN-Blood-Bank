@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import Input from './Input';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginAsync, registerAsync } from '../../redux/features/auth/authAction';
+import { selectUser } from '../../redux/features/auth/authSlice';
+import { toast } from 'react-toastify';
+import { RegisterInputData, loginInputData } from '../../utils/data';
 
 const Form = ({ formType }) => {
     const initialRegistration = {
@@ -16,76 +19,7 @@ const Form = ({ formType }) => {
         password: ""
 
     }
-    const RegisterInputData = [
-
-        {
-            id: 2,
-            type: "text",
-            name: "name",
-            label: "Name",
-            user: true
-
-        }, {
-            id: 3,
-            type: "text",
-            name: "organisationName",
-            label: "Organisation Name",
-            oraganisation: true
-
-        }, {
-            id: 4,
-            type: "text",
-            name: "hospitalName",
-            label: "Hospital Name",
-            hospital: true
-
-        }, {
-            id: 5,
-            type: "text",
-            name: "website",
-            label: "Website",
-
-        }, {
-            id: 6,
-            type: "text",
-            name: "address",
-            label: "Address",
-
-        }, {
-            id: 7,
-            type: "number",
-            name: "phone",
-            label: "Phone No",
-
-        }, {
-            id: 8,
-            type: "email",
-            name: "email",
-            label: "E-mail",
-
-        }, {
-            id: 9,
-            type: "text",
-            name: "password",
-            label: "Password",
-
-        },
-    ]
-    const loginInputData = [
-        {
-            id: 1,
-            type: "email",
-            name: "email",
-            label: "E-mail",
-
-        }, {
-            id: 2,
-            type: "text",
-            name: "password",
-            label: "Password",
-
-        },
-    ]
+   
     const [register, setRegister] = useState(initialRegistration);
     const [role, setRole] = useState("doner");
     const dispatch = useDispatch();
@@ -119,15 +53,15 @@ const Form = ({ formType }) => {
         dispatch(registerAsync({ ...register, role }))
         navigate("/login")
 
-
-
     }
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         dispatch(loginAsync({ ...login, role }))
         navigate("/")
 
+
     }
+    const { error } = useSelector(selectUser)
     return (
         <form onSubmit={
             formType === "register"
@@ -135,6 +69,11 @@ const Form = ({ formType }) => {
                 : (e) => handleLoginSubmit(e)
         }>
             <div className='h-full overflow-hidden'>
+
+                {error && error !== "Failed to verify token" ? toast.error(error) : ""}
+
+
+
 
                 {/* radio bth */}
 
@@ -179,7 +118,7 @@ const Form = ({ formType }) => {
 
 
             </div>
-        </form>
+        </form >
     )
 }
 

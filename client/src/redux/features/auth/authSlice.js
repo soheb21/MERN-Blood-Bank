@@ -20,7 +20,6 @@ export const authSlice = createSlice({
         builder.addCase(registerAsync.fulfilled, (state, { payload }) => {
             state.loading = false;
             state.error = null;
-            state.user = payload.doc;
 
         })
         builder.addCase(registerAsync.rejected, (state, { payload }) => {
@@ -63,5 +62,5 @@ export const authSlice = createSlice({
     }
 
 });
-export const selectUser=(state)=>state.auth;
+export const selectUser = (state) => state.auth;
 export default authSlice.reducer;

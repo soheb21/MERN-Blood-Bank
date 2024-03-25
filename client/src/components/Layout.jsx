@@ -9,14 +9,14 @@ const Layout = ({ children }) => {
     return (
         <div>
 
-            <div className='h-screen relative text-center gap-3 p-2 w-full bg-slate-500 grid grid-cols-1 md:grid-cols-4 grid-rows-[50px_auto_50px]'>
+            <div className='h-screen relative text-center gap-3 p-2 w-full bg-purple-100 grid grid-cols-1 md:grid-cols-4 grid-rows-[50px_auto_30px]'>
 
                 <header className="col-span-3">
                     <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
                 </header>
 
 
-                <aside className={`col-span-1 row-span-full absolute ${isOpen ? 'left-1' : '-left-52'} transition-all md:static h-full w-1/2 md:w-full`}>
+                <aside className={`col-span-1 row-span-full absolute ${isOpen ? 'left-1' : '-left-52'} z-10 transition-all md:static h-full w-1/2 md:w-full`}>
                     <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
                 </aside>
 

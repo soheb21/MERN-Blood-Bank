@@ -1,11 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../../utils/API";
+import { toast } from "react-toastify";
 
 export const registerAsync = createAsyncThunk("register", async ({ ...registerData }, { rejectWithValue }) => {
     try {
         const { data } = await API.post("/auth/register", { ...registerData });
         if (data.success) {
-            // alert(data.mssg)
+            toast.success(data.mssg,{
+                position: "bottom-right"
+            })
             return data;
         }
     } catch (e) {
@@ -24,7 +27,9 @@ export const loginAsync = createAsyncThunk("login", async (loginData, { rejectWi
         const { data } = await API.post("/auth/login", loginData);
         if (data.success) {
             localStorage.setItem("token", data.token)
-            // alert(data.mssg)
+            toast.success(data.mssg,{
+                position: "bottom-right"
+            })
             return data;
         }
     } catch (e) {
@@ -42,6 +47,9 @@ export const getUserAsync = createAsyncThunk("getUser", async (args, { rejectWit
     try {
         const { data } = await API.get("/auth/getUser");
         if (data.success) {
+            toast.success(data.mssg,{
+                position: "bottom-right"
+            })
             return data;
         }
     } catch (e) {

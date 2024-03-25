@@ -14,6 +14,8 @@ app.use(cors());
 //routes
 app.use("/api/v1/auth", require("./routes/auth"));
 app.use("/api/v1/inventory", require("./routes/inventoryRoutes"));
+app.use("/api/v1/analytics", require("./routes/analyticsRoute"));
+app.use("/api/v1/admin", require("./routes/adminRoutes"));
 
 //Database
 connectDB();
